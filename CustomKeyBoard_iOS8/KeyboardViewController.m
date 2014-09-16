@@ -66,8 +66,8 @@
     [self.keyBoard.btnDelete addTarget:self action:@selector(deletButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.keyBoard.btnSpace addTarget:self action:@selector(spaceButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    for (UIButton *keyButton in self.self) {
-        <#statements#>
+    for (UIButton *keyButton in self.keyBoard.btnKeyBoardArray) {
+        [keyButton addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -77,14 +77,16 @@
 }
 
 -(void)deletButtonTapped{
-    
+    [self.textDocumentProxy insertText:@"/n"];
 }
 
 -(void)spaceButtonTapped{
     [self.textDocumentProxy insertText:@" "];
 }
 
-
+-(void)buttonTapped:(UIButton *)button{
+    [self.textDocumentProxy insertText:[button currentTitle]];
+}
 
 
 
